@@ -40,6 +40,14 @@
   ],
   "author": "Luis Porras",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lporras/bibleql-js.git"
+  },
+  "homepage": "https://github.com/lporras/bibleql-js#readme",
+  "bugs": {
+    "url": "https://github.com/lporras/bibleql-js/issues"
+  },
   "dependencies": {
     "graphql-request": "^7.1.2",
     "graphql": "^16.10.0"
