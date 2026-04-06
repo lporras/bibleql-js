@@ -1,0 +1,52 @@
+{
+  "name": "bibleql-js",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript SDK for the BibleQL GraphQL API (server-side only)",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "bible",
+    "bibleql",
+    "graphql",
+    "api",
+    "sdk",
+    "scripture"
+  ],
+  "author": "Luis Porras",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-request": "^7.1.2",
+    "graphql": "^16.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "tsup": "^8.3.0",
+    "vitest": "^3.0.0"
+  }
+}
