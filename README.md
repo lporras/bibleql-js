@@ -139,6 +139,16 @@ const verses = await client.search("love");
 const verses = await client.search("faith", { limit: 10 });
 ```
 
+### `semanticSearch(query, options?)`
+
+Search for verses by semantic meaning using AI embeddings.
+
+```typescript
+const results = await client.semanticSearch("God's love for humanity");
+const results = await client.semanticSearch("forgiveness", { limit: 10, translation: "spa-rv1909" });
+// [{ verse: { bookId: "JHN", bookName: "John", chapter: 3, verse: 16, text: "..." }, similarity: 0.95 }]
+```
+
 ### `verseOfTheDay(options?)`
 
 Fetch the verse of the day.
@@ -218,6 +228,7 @@ import type {
   LocalizedBook,
   Language,
   SearchResult,
+  SemanticSearchResult,
   BibleQLConfig,
 } from "bibleql-js";
 ```

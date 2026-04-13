@@ -132,6 +132,40 @@ describe("queries", () => {
     });
   });
 
+  describe("semanticSearch", () => {
+    it("returns query with query text and translation", () => {
+      const result = queries.semanticSearch("love", "eng-web");
+      expect(result.query).toContain("$query: String!");
+      expect(result.query).toContain("semanticSearch");
+      expect(result.variables).toEqual({
+        query: "love",
+        translation: "eng-web",
+      });
+    });
+
+    it("includes verse and similarity fields in query", () => {
+      const result = queries.semanticSearch("love", "eng-web");
+      expect(result.query).toContain("verse");
+      expect(result.query).toContain("similarity");
+      expect(result.query).toContain("bookId");
+      expect(result.query).toContain("bookName");
+    });
+
+    it("includes optional limit", () => {
+      const result = queries.semanticSearch("love", "eng-web", 10);
+      expect(result.variables).toEqual({
+        query: "love",
+        translation: "eng-web",
+        limit: 10,
+      });
+    });
+
+    it("omits undefined limit", () => {
+      const result = queries.semanticSearch("love", "eng-web");
+      expect(result.variables).not.toHaveProperty("limit");
+    });
+  });
+
   describe("verseOfTheDay", () => {
     it("returns query with translation", () => {
       const result = queries.verseOfTheDay("eng-web");

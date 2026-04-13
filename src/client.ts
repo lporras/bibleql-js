@@ -20,6 +20,7 @@ import type {
   Book,
   Language,
   LocalizedBook,
+  SemanticSearchResult,
 } from "./types.js";
 
 interface TranslationOptions {
@@ -131,6 +132,17 @@ export class BibleQLClient {
       queries.search(queryText, t, options?.limit),
     );
     return data.search;
+  }
+
+  async semanticSearch(
+    queryText: string,
+    options?: SearchOptions,
+  ): Promise<SemanticSearchResult[]> {
+    const t = options?.translation || this.config.defaultTranslation;
+    const data = await this.execute(
+      queries.semanticSearch(queryText, t, options?.limit),
+    );
+    return data.semanticSearch;
   }
 
   async verseOfTheDay(options?: VerseOfTheDayOptions): Promise<Passage> {
