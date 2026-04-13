@@ -205,6 +205,40 @@ describe("BibleQLClient", () => {
     });
   });
 
+  describe("semanticSearch", () => {
+    it("returns semantic search results", async () => {
+      const mockData = {
+        semanticSearch: [
+          {
+            verse: { bookId: "JHN", bookName: "John", chapter: 3, verse: 16, text: "For God so loved..." },
+            similarity: 0.95,
+          },
+        ],
+      };
+      mockRequest.mockResolvedValue(mockData);
+
+      const result = await getClient().semanticSearch("love");
+      expect(result).toEqual(mockData.semanticSearch);
+    });
+
+    it("accepts optional limit", async () => {
+      mockRequest.mockResolvedValue({ semanticSearch: [] });
+
+      await getClient().semanticSearch("love", { limit: 5 });
+      expect(mockRequest).toHaveBeenCalled();
+    });
+
+    it("accepts optional translation", async () => {
+      mockRequest.mockResolvedValue({ semanticSearch: [] });
+
+      await getClient().semanticSearch("love", { translation: "spa-rv1909" });
+      expect(mockRequest).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({ translation: "spa-rv1909" }),
+      );
+    });
+  });
+
   describe("verseOfTheDay", () => {
     it("returns verse of the day", async () => {
       const mockData = {

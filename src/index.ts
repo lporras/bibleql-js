@@ -19,6 +19,7 @@ export type {
   LocalizedBook,
   Language,
   SearchResult,
+  SemanticSearchResult,
 } from "./types.js";
 export {
   BibleQLError,

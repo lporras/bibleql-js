@@ -55,3 +55,8 @@ export interface SearchResult {
   totalCount: number;
   verses: Verse[];
 }
+
+export interface SemanticSearchResult {
+  verse: Verse;
+  similarity: number;
+}

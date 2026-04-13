@@ -184,6 +184,28 @@ export function search(
   };
 }
 
+export function semanticSearch(
+  queryText: string,
+  translation?: string,
+  limit?: number,
+): QueryPayload {
+  return {
+    query: `query($query: String!, $translation: String, $limit: Int) {
+  semanticSearch(query: $query, translation: $translation, limit: $limit) {
+    verse {
+      bookId
+      bookName
+      chapter
+      verse
+      text
+    }
+    similarity
+  }
+}`,
+    variables: omitUndefined({ query: queryText, translation, limit }),
+  };
+}
+
 export function verseOfTheDay(
   translation?: string,
   date?: string,
